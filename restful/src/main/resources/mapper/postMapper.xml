@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.restful.mapper.PostMapper">
+    <select id="selectAll" resultType="postVO">
+        SELECT P.ID, POST_TITLE, POST_CONTENT, POST_READ_COUNT, MEMBER_ID, MEMBER_NAME
+        FROM TBL_MEMBER M JOIN TBL_POST P
+        ON M.ID = P.MEMBER_ID
+    </select>
+
+    <select id="select" resultType="postVO">
+        SELECT P.ID, POST_TITLE, POST_CONTENT, POST_READ_COUNT, MEMBER_ID, MEMBER_NAME
+        FROM TBL_MEMBER M JOIN TBL_POST P
+        ON M.ID = P.MEMBER_ID AND P.ID = #{id}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM TBL_POST
+        WHERE ID = #{id}
+    </delete>
+
+    <insert id="insert">
+        INSERT INTO TBL_POST(ID, POST_TITLE, POST_CONTENT, MEMBER_ID)
+        VALUES(SEQ_POST.NEXTVAL, #{postTitle}, #{postContent}, #{memberId})
+    </insert>
+
+    <update id="update">
+        UPDATE TBL_POST
+        SET POST_TITLE = #{postTitle}, POST_CONTENT = #{postContet}
+        WHERE ID = #{id}
+    </update>
+</mapper>
