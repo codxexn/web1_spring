@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>로그인</title>
+</head>
+<body>
+    <form th:action="@{/member/login}" method="post" th:object="${memberVO}" name="login-form">
+        <input type="text" th:field="*{id}" placeholder="아이디">
+        <input type="password" th:field="*{pw}" placeholder="비밀번호">
+        <button id="send">로그인</button>
+    </form>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script th:inline="javascript">
+    let flag = [[${login}]]
+    if(flag == null) {flag = true;}
+
+    if(!flag){
+        alert("로그인 실패!");
+    }
+
+    document.getElementById("send").addEventListener("click", (e) => {
+        e.preventDefault();
+        const pw = document.querySelector("input[name=pw]");
+        pw.value = CryptoJS.SHA256(pw.value).toString(CryptoJS.enc.hex);
+        document.querySelector("form[name=login-form]").submit();
+    })
+</script>
+</html>
