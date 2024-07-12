@@ -307,7 +307,8 @@ API 를 다운받아서 빌드패스를 추가하는 게 아니라
 - GET 방식, POST 방식 등 전송 방식에 대한 처리를 어노테이션으로 처리 가능
 - 상속/인터페이스 방식 대신 어노테이션으로만 설정 가능
 
-![20240712_202901](https://github.com/user-attachments/assets/bcc63368-e98e-43fb-8eb7-53663a46f14e)
+![20240712_203010](https://github.com/user-attachments/assets/aaed8616-a830-489c-9228-9e21560cbb92)
+
 
 
 
